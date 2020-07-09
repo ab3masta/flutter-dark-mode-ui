@@ -61,7 +61,7 @@ final TextStyle style1colorJosefinSans =
     TextStyle(fontSize: 20, color: primaryColor, fontFamily: "josefinSans");
 final TextStyle style1BoldWhiteJosefinSans = TextStyle(
     fontWeight: FontWeight.w600,
-    fontSize: 25,
+    fontSize: 23,
     color: Colors.white,
     fontFamily: "josefinSans");
 final TextStyle style1BoldColorJosefinSans = TextStyle(

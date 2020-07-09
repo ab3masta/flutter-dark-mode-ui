@@ -29,7 +29,7 @@ class _DetailsPageState extends State<DetailsPage> {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: height * 1 / 4 + 25,
-              color: Colors.blue,
+              color: Theme.of(context).primaryColor,
               child: Center(
                 child: Container(
                   margin: EdgeInsets.only(top: 80, left: 20, right: 20),
@@ -81,7 +81,7 @@ class _DetailsPageState extends State<DetailsPage> {
             child: Container(
               height: height * 3 / 4 + 50,
               decoration: BoxDecoration(
-                  color: Colors.grey[200],
+                  color: Theme.of(context).accentColor,
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20))),
@@ -103,13 +103,13 @@ class _DetailsPageState extends State<DetailsPage> {
                               children: <Widget>[
                                 Icon(
                                   Icons.arrow_back,
-                                  color: Colors.blue[800],
+                                  color: Colors.white,
                                 ),
                                 Text("back",
                                     style: TextStyle(
                                         fontSize: 20,
                                         letterSpacing: 0.5,
-                                        color: Colors.blue[800],
+                                        color: Colors.white,
                                         fontWeight: FontWeight.bold))
                               ],
                             ),
@@ -123,7 +123,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                       child: Icon(
                                     Icons.add_shopping_cart,
                                     size: 25,
-                                    color: Colors.blue[800],
+                                    color: Colors.white,
                                   )),
                                   Align(
                                     alignment: Alignment.topRight,
@@ -151,7 +151,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             height: 250,
                             width: 250,
                             decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Theme.of(context).primaryColor,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(250))),
                           ),
@@ -244,9 +244,9 @@ class _DetailsPageState extends State<DetailsPage> {
                               Text(
                                 widget.firstName,
                                 style: TextStyle(
-                                    fontSize: 28,
+                                    fontSize: 25,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue[800],
+                                    color: Colors.white,
                                     letterSpacing: 1.0),
                               ),
                               SizedBox(
@@ -255,9 +255,9 @@ class _DetailsPageState extends State<DetailsPage> {
                               Text(
                                 widget.lastName,
                                 style: TextStyle(
-                                    fontSize: 28,
+                                    fontSize: 25,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.blue[800],
+                                    color: Colors.white,
                                     letterSpacing: 1.0),
                               ),
                               Spacer()
@@ -268,11 +268,13 @@ class _DetailsPageState extends State<DetailsPage> {
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue),
+                                color: Colors.white),
                           ),
                           Text(widget.description,
-                              style:
-                                  TextStyle(fontSize: 15, letterSpacing: 0.5))
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  letterSpacing: 0.5,
+                                  color: Colors.white))
                         ],
                       ),
                     ),

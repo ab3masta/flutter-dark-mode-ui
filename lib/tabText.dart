@@ -20,7 +20,7 @@ class TabText extends StatelessWidget {
             padding: EdgeInsets.all(10),
             margin: EdgeInsets.all(5),
             decoration: BoxDecoration(
-                color: isSelected ? Colors.blue[300] : null,
+                color: isSelected ? Theme.of(context).primaryColorDark : null,
                 borderRadius:
                     isSelected ? BorderRadius.all(Radius.circular(10)) : null),
             child: Text(

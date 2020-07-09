@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_darkmode_ui/allStyle/text_styles.dart';
 import 'package:flutter_darkmode_ui/detailsPage.dart';
 import 'package:flutter_darkmode_ui/model/fourniture.dart';
 import 'package:flutter_darkmode_ui/tabText.dart';
+import 'package:flutter_darkmode_ui/theme/app_themes.dart';
+import 'package:flutter_darkmode_ui/theme/bloc/theme_bloc.dart';
+import 'package:flutter_darkmode_ui/theme/bloc/theme_event.dart';
 import 'dart:math';
 
-class HomePage extends StatefulWidget {
+class HHHomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
+class _HomePageState extends State<HHHomePage>
     with SingleTickerProviderStateMixin {
   double width, height;
   int selectedTabIndex = 0;
@@ -50,47 +54,72 @@ class _HomePageState extends State<HomePage>
                 child: Container(
                   padding: EdgeInsets.only(top: 40, left: 20, right: 20),
                   height: height * 1 / 3 + 75,
-                  color: Colors.blue,
+                  color: Theme.of(context).accentColor,
                   child: Column(
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          Text(
+                            "Acceuil",
+                            style: style1BoldWhiteJosefinSans,
+                          ),
                           InkWell(
                             onTap: () {
-                              // Navigator.of(context).push(MaterialPageRoute(
-                              //     builder: (context) =>
-                              //         MyHomePage(title: "data")));
+                              if (Theme.of(context).primaryColor ==
+                                  Colors.blue[400]) {
+                                BlocProvider.of<ThemeBloc>(context).dispatch(
+                                  ThemeChanged(theme: AppTheme.BlueDark),
+                                );
+                                print("light mode");
+                              } else if (Theme.of(context).primaryColor ==
+                                  Colors.grey[600]) {
+                                BlocProvider.of<ThemeBloc>(context).dispatch(
+                                  ThemeChanged(theme: AppTheme.BlueLight),
+                                );
+                                print("dark mode");
+                              }
                             },
-                            child: Text(
-                              "Acceuil",
-                              style: style1BoldWhiteJosefinSans,
-                            ),
-                          ),
-                          Container(
-                              height: 30,
-                              width: 30,
-                              child: Stack(
-                                children: <Widget>[
-                                  Center(
-                                      child: Icon(
-                                    Icons.notifications,
-                                    size: 25,
-                                    color: Colors.white,
-                                  )),
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                        height: 8,
-                                        width: 8,
-                                        margin: EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                            color: Colors.red,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(8.0)))),
-                                  )
-                                ],
-                              ))
+                            child: Container(
+                                height: 30,
+                                width: 30,
+                                child: Stack(
+                                  children: <Widget>[
+                                    Center(
+                                        child: (Theme.of(context)
+                                                    .primaryColor ==
+                                                Colors.blue)
+                                            ? Icon(
+                                                Icons.wb_sunny,
+                                                size: 25,
+                                                color: Colors.white,
+                                              )
+                                            : (Theme.of(context).primaryColor ==
+                                                    Colors.grey[600])
+                                                ? Icon(
+                                                    Icons.brightness_3,
+                                                    size: 25,
+                                                    color: Colors.white,
+                                                  )
+                                                : Icon(
+                                                    Icons.wb_sunny,
+                                                    size: 25,
+                                                    color: Colors.white,
+                                                  )),
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: Container(
+                                          height: 8,
+                                          width: 8,
+                                          margin: EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                              color: Colors.red,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(8.0)))),
+                                    )
+                                  ],
+                                )),
+                          )
                         ],
                       ),
                       SizedBox(
@@ -102,7 +131,7 @@ class _HomePageState extends State<HomePage>
                             height: 50,
                             padding: EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
-                                color: Colors.blue[200],
+                                color: Theme.of(context).primaryColorDark,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20))),
                             child: TextFormField(
@@ -183,7 +212,7 @@ class _HomePageState extends State<HomePage>
                 child: Container(
                   height: height * 2 / 3 - 25,
                   decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Theme.of(context).primaryColorLight,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(50),
                       )),
@@ -248,14 +277,14 @@ class _HomePageState extends State<HomePage>
                                     height: 150,
                                     margin: EdgeInsets.only(right: 5),
                                     decoration: BoxDecoration(
-                                        color: Colors.white,
+                                        color: Theme.of(context).accentColor,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(30))),
                                     child: Stack(
                                       children: <Widget>[
                                         Center(
                                           child: Container(
-                                            height: 50,
+                                            height: 55,
                                             margin: EdgeInsets.all(10),
                                             child: Row(
                                               mainAxisAlignment:
@@ -272,14 +301,14 @@ class _HomePageState extends State<HomePage>
                                                                     index]
                                                                 .firstName,
                                                             style:
-                                                                style1BoldColorJosefinSans),
+                                                                style1BoldWhiteJosefinSans),
                                                         Text(
                                                             fournitureList
                                                                 .fournitures[
                                                                     index]
                                                                 .lastName,
                                                             style:
-                                                                style1BoldColorJosefinSans),
+                                                                style1BoldWhiteJosefinSans),
                                                       ],
                                                     ),
                                                   ),
@@ -294,7 +323,8 @@ class _HomePageState extends State<HomePage>
                                             height: 30,
                                             width: 80,
                                             decoration: BoxDecoration(
-                                                color: Colors.blue,
+                                                color: Theme.of(context)
+                                                    .primaryColorDark,
                                                 borderRadius: BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(30),
@@ -302,7 +332,7 @@ class _HomePageState extends State<HomePage>
                                                         Radius.circular(30))),
                                             child: Center(
                                                 child: Text(
-                                              "3000",
+                                              fournitureList.fournitures[index].price.toString(),
                                               style: style0whiteJosefinSans,
                                             )),
                                           ),
